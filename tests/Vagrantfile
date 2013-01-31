@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+  config.vm.box = "precise64"
+  config.vm.box_url = "http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-vagrant-amd64-disk1.box"
+
+
+  config.vm.define :vm01 do |config|
+    config.vm.forward_port 8888, 8888
+    config.vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    config.vm.host_name = "vagranthumbor"
+  end
+  
+  config.vm.provision :puppet do |puppet|
+    puppet.manifests_path = "."
+    puppet.module_path = "../../"
+    puppet.manifest_file = "init.pp"
+  end
+end
