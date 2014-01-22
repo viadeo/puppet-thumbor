@@ -19,7 +19,7 @@ class thumbor::repo {
     location    => "http://ppa.launchpad.net/thumbor/ppa/ubuntu/",
     release     => "precise",
     repos       => 'main',
-    key         => '1225313B',
+    key         => 'CBEC8F27',
     include_src => false,
   }
 
