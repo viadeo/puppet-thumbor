@@ -17,6 +17,7 @@ class thumbor::service {
                     '/etc/thumbor.key',
                     '/etc/default/thumbor'],
     ensure  => running,
+    enable  => true,
     subscribe => File['/etc/thumbor.conf',
                     '/etc/thumbor.key',
                     '/etc/default/thumbor'],
