@@ -16,18 +16,26 @@ class thumbor (
   $port='8888', 
   $ip='0.0.0.0', 
   $config = {}, 
-  $conffile = '/dev/null'
+  $conffile = '/dev/null',
+  $install_method = 'apt'
 ) {
 
     ## Modules
-    include thumbor::repo
-    include thumbor::install
     include thumbor::config
     include thumbor::service
 
     ## Ordering
-    Class['thumbor::repo']
-    -> Class['thumbor::install']
-    -> Class['thumbor::config']
-    -> Class['thumbor::service']
+    Class['thumbor::config']
+    ~> Class['thumbor::service']
+
+    if $install_method == 'apt' {
+        include thumbor::repo
+        include thumbor::install::apt
+        Class['thumbor::repo'] -> Class['thumbor::install::apt'] -> Class['thumbor::config']
+    } elsif $install_method == 'pip' {
+        include thumbor::install::pip
+        Class['thumbor::install::pip'] -> Class['thumbor::config']
+    } else {
+        fail("install_method must be 'apt' or 'pip'")
+    }
 }

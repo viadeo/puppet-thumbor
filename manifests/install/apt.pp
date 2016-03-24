@@ -1,4 +1,4 @@
-# = Class: thumbor::install
+# = Class: thumbor::install::apt
 #
 # This module manages thumbor
 #
@@ -11,7 +11,7 @@
 # == Sample Usage:
 #
 # [Remember: No empty lines between comments and class definition]
-class thumbor::install {
+class thumbor::install::apt {
   package{ ['thumbor']:
     ensure => present
   }
