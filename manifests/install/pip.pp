@@ -8,11 +8,19 @@ class thumbor::install::pip {
     fail("Make sure the python class also includes the python-dev package.")
   }
 
-  package { ['libwebp-dev', 'python-statsd', 'python-crypto', 'libjpeg-dev', 'libjpeg8-dev', 'libpng12-dev', 'libtiff5-dev']: }
+  package { ['libwebp-dev', 'python-statsd', 'python-crypto', 'libjpeg-dev', 'libjpeg8-dev', 'libpng12-dev', 'libtiff5-dev', 'python-numpy', 'python-opencv', 'libcurl4-openssl-dev']: }
+
+  -> python::pip { 'colour':
+      pkgname => 'colour'
+  }
 
   -> python::pip { 'thumbor':
-        pkgname => 'thumbor',
-        ensure => '5.2.1'
+      pkgname => 'thumbor',
+      ensure => '5.2.1'
+  }
+
+  -> python::pip { 'opencv-engine':
+      pkgname => 'opencv-engine'
   }
 
   file {'/etc/init/thumbor.conf':
