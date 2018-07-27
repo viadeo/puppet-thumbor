@@ -32,7 +32,8 @@ class { 'thumbor':
   port => '8888',
   ip => '0.0.0.0',
   config => {},
-  conffile => '/dev/null'
+  conffile => '/dev/null',
+  install_method = 'pip'
 }
 ```
 
