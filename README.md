@@ -33,7 +33,7 @@ class { 'thumbor':
   ip => '0.0.0.0',
   config => {},
   conffile => '/dev/null',
-  install_method = 'pip'
+  install_method => 'pip'
 }
 ```
 
