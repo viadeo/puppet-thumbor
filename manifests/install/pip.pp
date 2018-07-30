@@ -1,9 +1,5 @@
 class thumbor::install::pip {
 
-  if !defined(Package['python-dev']) {
-    fail("Make sure the python class also includes the python-dev package.")
-  }
-
   package { ['libwebp-dev',
     'python-statsd',
     'python-crypto',
