@@ -27,18 +27,18 @@ class thumbor::install::pip {
 
   file {'/etc/init/thumbor.conf':
     ensure => present,
-    owner  => root,
-    group  => root,
-    mode   => 0644,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
     source => 'puppet:///modules/thumbor/init/thumbor.conf',
     notify => Class['thumbor::service'],
   }
 
   file {'/etc/init/thumbor-worker.conf':
     ensure => present,
-    owner  => root,
-    group  => root,
-    mode   => 0644,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
     source => 'puppet:///modules/thumbor/init/thumbor-worker.conf',
     notify => Class['thumbor::service'],
   }
@@ -59,7 +59,7 @@ class thumbor::install::pip {
     ensure => directory,
     owner => 'thumbor',
     group => 'thumbor',
-    mode => 0755
+    mode => '0755'
   }
  
 }
