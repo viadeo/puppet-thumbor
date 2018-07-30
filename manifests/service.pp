@@ -11,6 +11,7 @@
 # == Sample Usage:
 #
 # [Remember: No empty lines between comments and class definition]
+
 case $thumbor_service_provider {
     'systemd': {
       file { '/etc/systemd/system/thumbor-service.cfg':
@@ -32,8 +33,10 @@ class thumbor::service {
     require => File['/etc/thumbor.conf',
                     '/etc/thumbor.key',
                     '/etc/default/thumbor'],
-    provider   => thumbor_service_provider,
-    hasrestart => true,
-    hasstatus  => true,
+    ensure  => running,
+    enable  => true,
+    subscribe => File['/etc/thumbor.conf',
+                    '/etc/thumbor.key',
+                    '/etc/default/thumbor'],
   }
 }
