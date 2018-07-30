@@ -13,18 +13,15 @@ class thumbor::install::pip {
   ]: }
 
   -> package { 'colour':
-    pkgname => 'colour',
     provider => 'pip'
   }
 
   -> package { 'thumbor':
-    pkgname => 'thumbor',
     provider => 'pip',
     ensure => '5.2.1'
   }
 
   -> package { 'opencv-engine':
-    pkgname => 'opencv-engine',
     provider => 'pip',
   }
 
