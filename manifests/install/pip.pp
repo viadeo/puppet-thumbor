@@ -19,6 +19,11 @@ class thumbor::install::pip {
     provider => 'pip',
     ensure => '5.2.1'
   }
+  
+  -> package { 'thumbor-memcached':
+    provider => 'pip',
+    ensure => '5.2.1'
+  }
 
   -> package { 'opencv-engine':
     provider => 'pip',
