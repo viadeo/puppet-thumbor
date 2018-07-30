@@ -1,0 +1,13 @@
+[Unit]
+Description=Thumbor Image Server
+After=syslog.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+PIDFile=/var/run/thumbor.pid
+ExecStart=/usr/local/bin/thumbor -c /etc/thumbor.conf -k /etc/thumbor.key
+MemoryLimit=2048M
+
+[Install]
+WantedBy=multi-user.target
