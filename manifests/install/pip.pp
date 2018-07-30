@@ -8,6 +8,7 @@ class thumbor::install::pip {
     'libtiff5-dev',
     'python-numpy',
     'python-opencv',
+    'libmemcached-dev',
     'libcurl4-openssl-dev'
   ]: }
 
@@ -22,7 +23,6 @@ class thumbor::install::pip {
   
   -> package { 'thumbor-memcached':
     provider => 'pip',
-    ensure => '5.2.1'
   }
 
   -> package { 'opencv-engine':
