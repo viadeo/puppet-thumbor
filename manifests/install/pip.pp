@@ -12,7 +12,7 @@ class thumbor::install::pip {
     'libcurl4-openssl-dev'
   ]: }
 
-  -> package { 'colour':th
+  -> package { 'colour':
     provider => 'pip'
   }
 
