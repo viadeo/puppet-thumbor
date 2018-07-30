@@ -12,7 +12,7 @@ class thumbor::install::pip {
     'libcurl4-openssl-dev'
   ]: }
 
-  -> package { 'colour':
+  -> package { 'colour':th
     provider => 'pip'
   }
 
@@ -21,7 +21,7 @@ class thumbor::install::pip {
     ensure => '5.2.1'
   }
   
-  -> package { 'thumbor-memcached':
+  -> package { 'tc_redis':
     provider => 'pip',
   }
 
