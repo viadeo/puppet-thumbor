@@ -12,9 +12,7 @@
 #
 # [Remember: No empty lines between comments and class definition]
 class thumbor::repo {
-
-#   apt::ppa { "ppa:thumbor/ppa": }
-
+  #   apt::ppa { "ppa:thumbor/ppa": }
   apt::source {'globo_repository':
     location    => "http://ppa.launchpad.net/thumbor/ppa/ubuntu/",
     release     => "precise",
@@ -22,6 +20,4 @@ class thumbor::repo {
     key         => 'CBEC8F27',
     include_src => false,
   }
-
 }
-

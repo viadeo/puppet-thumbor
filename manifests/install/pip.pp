@@ -1,5 +1,15 @@
 class thumbor::install::pip {
 
+
+
+
+
+
+
+
+
+
+
   package { ['libwebp-dev',
     'python-statsd',
     'python-crypto',
@@ -29,23 +39,21 @@ class thumbor::install::pip {
     provider => 'pip',
   }
 
-  file {'/etc/init/thumbor.conf':
-    ensure => present,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-    source => 'puppet:///modules/thumbor/init/thumbor.conf',
-    notify => Class['thumbor::service'],
+  if $::service_provider == 'systemd'{
+    thumbor::systemd{ $name: }
+    exec { "Reload systemd  thumbor" :
+      command => '/bin/systemctl daemon-reload',
+      before => Exec["Enable Thumbor systemd"]
+    }
+    exec { "Enable Thumbor systemd" :
+      command => "/bin/systemctl enable thumbor",
+      onlyif  => "/bin/systemctl is-enabled thumbor | /bin/grep 'disabled'",
+      require => thumbor::systemd["thumbor"],
+      before  => Service["thumbor"],
+    }
   }
 
-  file {'/etc/init/thumbor-worker.conf':
-    ensure => present,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-    source => 'puppet:///modules/thumbor/init/thumbor-worker.conf',
-    notify => Class['thumbor::service'],
-  }
+
 
   group { 'thumbor':
     system => true,
